@@ -27,13 +27,12 @@ create(productName : HTMLInputElement,productPrice : HTMLInputElement,productSto
 
   this.productService.addProduct(create_product, () => {
     this.hideSpinner(SpinnerType.BallScaleMultiple);
-    this.toastr.message(`${productName.value} başarılı şekilde eklendi !`, "Başarılı", {
+    this.toastr.message(`${productName.value} ürünü başarılı şekilde eklendi !`, "Başarılı", {
       messageType: ToastrMessageType.Success,
       position: ToastrMessagePosition.TopRight
     })
-  }, () => {
-    this.hideSpinner(SpinnerType.BallScaleMultiple);
-    this.toastr.message("Ürün eklenemedi", "Hata", {
+  }, (errorMessage) => {
+    this.toastr.message(errorMessage, "Hata !", {
       messageType: ToastrMessageType.Error,
       position: ToastrMessagePosition.TopRight
     })
