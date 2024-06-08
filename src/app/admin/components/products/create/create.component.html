@@ -1,0 +1,25 @@
+<div class="create-container">
+  <h3 style="color: rgb(11, 82, 141);"> <i class="fa-solid fa-plus"></i> Ürün Ekle</h3>
+</div>
+<div class="create-container">
+ 
+  <mat-form-field>
+    <mat-label>Ürün Adı</mat-label>
+    <input matInput #txtProductName>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Ürün Fiyatı</mat-label>
+    <input matInput type="number" min="0" value="0" #txtProductPrice>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Ürün Stok Sayısı</mat-label>
+    <input matInput type="number" min="0" value="0" #txtProductStock>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" 
+   (click)="create(txtProductName,txtProductPrice,txtProductStock)
+   ">Ekle
+   </button>
+
+</div>
+

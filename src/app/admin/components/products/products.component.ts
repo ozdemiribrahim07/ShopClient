@@ -22,10 +22,7 @@ export class ProductsComponent  extends BaseComponent implements OnInit {
       controller : "products"
     }).subscribe(data => console.log(data));
 
-    
-   this.httpClient.delete({
-     controller : "products"
-   }, "04921580-a30c-4511-b600-68aace691783").subscribe();
+   
     
   }
 
