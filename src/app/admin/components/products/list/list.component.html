@@ -1,1 +1,61 @@
-<p>list works!</p>
+<div class="list-container">
+  <h3 style="color: rgb(11, 82, 141);"> <i class="fa-solid fa-list"></i> Ürün Listesi</h3>
+</div>
+<div class="table-container">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef> Ürün Adı </th>
+        <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="productPrice">
+        <th mat-header-cell *matHeaderCellDef> Ürün Fiyatı </th>
+        <td mat-cell *matCellDef="let element"> {{element.productPrice}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="productStock">
+        <th mat-header-cell *matHeaderCellDef> Ürün Stok Adedi </th>
+        <td mat-cell *matCellDef="let element"> {{element.productStock}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="createdDate">
+        <th mat-header-cell *matHeaderCellDef> Eklenen Tarih </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedDate">
+        <th mat-header-cell *matHeaderCellDef> Güncellenen Tarih </th>
+        <td mat-cell *matCellDef="let element"> {{element.updatedDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Sil </th>
+        <td controller="products" [id]="element.id" appDelete (callback)="getAllProducts()" mat-cell *matCellDef="let element"> 
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef> Güncelle</th>
+        <td mat-cell *matCellDef="let element"> <img src="update.png"> </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator (page)="pageChanged()" [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+
+</div>
+
+
+  

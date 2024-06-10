@@ -1,0 +1,5 @@
+<h2 mat-dialog-title>Dosya veya dosyaları yüklemek istediğinize emin misiniz ?</h2>
+<mat-dialog-actions>
+  <button mat-button (click)="close()">İptal</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Evet</button>
+</mat-dialog-actions>

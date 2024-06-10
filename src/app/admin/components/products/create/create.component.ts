@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ProductService } from '../../../../services/common/product.service';
 import { Product_Create } from '../../../../contracts/product_create';
 import { BaseComponent, SpinnerType } from '../../../../base/base.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CustomToastrService, ToastrMessagePosition, ToastrMessageType } from '../../../../services/common/custom-toastr.service';
+import { FileUploadOptions } from '../../../../services/common/file-upload/file-upload.component';
 
 @Component({
   selector: 'app-create',
@@ -16,6 +17,14 @@ constructor(spinner : NgxSpinnerService,private productService : ProductService,
   super(spinner);
 }
  
+@Output() options : Partial<FileUploadOptions> = {
+  controller : "products",
+  action : "upload",
+  acceptedFiles : "png, jpg, jpeg",
+  explanation : "Ürün resmi veya resimleri ekleyin.."
+}
+
+@Output() createdProduct : EventEmitter<Product_Create> = new EventEmitter();
 
 create(productName : HTMLInputElement,productPrice : HTMLInputElement,productStock : HTMLInputElement){
 
@@ -30,7 +39,8 @@ create(productName : HTMLInputElement,productPrice : HTMLInputElement,productSto
     this.toastr.message(`${productName.value} ürünü başarılı şekilde eklendi !`, "Başarılı", {
       messageType: ToastrMessageType.Success,
       position: ToastrMessagePosition.TopRight
-    })
+    });
+    this.createdProduct.emit(create_product);
   }, (errorMessage) => {
     this.toastr.message(errorMessage, "Hata !", {
       messageType: ToastrMessageType.Error,
