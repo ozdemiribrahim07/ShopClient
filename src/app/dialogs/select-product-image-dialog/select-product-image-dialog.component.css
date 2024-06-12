@@ -1,0 +1,30 @@
+.photo-card {
+    width: 250px;
+  height:250px;
+  float: left;
+  margin: 5px 5px 5px 5px;
+  }
+  
+  .btn {
+    background-color: brown;
+    color: aliceblue;
+    text-align: center;
+    float: right;
+  }
+
+  img {
+    height: 180px;
+    object-fit: contain;
+    margin: 0 -16px 0 -16px;
+  }
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  
+  .main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }

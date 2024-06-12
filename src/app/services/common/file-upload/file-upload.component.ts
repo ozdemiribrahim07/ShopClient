@@ -6,6 +6,8 @@ import { CustomToastrService, ToastrMessagePosition, ToastrMessageType } from '.
 import { MatDialog } from '@angular/material/dialog';
 import { FileUploadDialogComponent } from '../../../dialogs/file-upload-dialog/file-upload-dialog.component';
 import { DialogService } from '../dialog.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SpinnerType } from '../../../base/base.component';
 
 @Component({
   selector: 'app-file-upload',
@@ -14,7 +16,7 @@ import { DialogService } from '../dialog.service';
 })
 export class FileUploadComponent {
 
-  constructor(private httpClient : HttpClientService, private toastr: CustomToastrService, private dialogRef : MatDialog, private dialogService : DialogService) {
+  constructor(private httpClient : HttpClientService, private toastr: CustomToastrService, private dialogRef : MatDialog, private dialogService : DialogService, private spinner : NgxSpinnerService) {
 
   }
 
@@ -36,6 +38,7 @@ export class FileUploadComponent {
       componentType : FileUploadDialogComponent,
       data : FileUploadDialogState.Yes,
       afterClosed : () => {
+        this.spinner.show(SpinnerType.BallScaleMultiple)
         this.httpClient.post({
           controller : this.options.controller,
           action : this.options.action,
@@ -46,12 +49,14 @@ export class FileUploadComponent {
             messageType : ToastrMessageType.Success,
             position : ToastrMessagePosition.TopRight
           })
+          this.spinner.hide(SpinnerType.BallScaleMultiple)
         },(errorResponse : HttpErrorResponse) => {
           this.toastr.message("Beklenemedik bir hata gerçekleşti", "Hata !", {
             messageType : ToastrMessageType.Error,
             position : ToastrMessagePosition.TopRight
           })
         })
+        this.spinner.hide(SpinnerType.BallScaleMultiple)
       }
     })
   }

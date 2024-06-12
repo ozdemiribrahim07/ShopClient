@@ -6,6 +6,8 @@ import { BaseComponent, SpinnerType } from '../../../../base/base.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CustomToastrService, ToastrMessagePosition, ToastrMessageType } from '../../../../services/common/custom-toastr.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { DialogService } from '../../../../services/common/dialog.service';
+import { SelectProductImageDialogComponent, SelectProductImageState } from '../../../../dialogs/select-product-image-dialog/select-product-image-dialog.component';
 
 declare var $ :any;
 
@@ -17,11 +19,11 @@ declare var $ :any;
 export class ListComponent extends BaseComponent implements OnInit {
 
 
-  constructor(spinner : NgxSpinnerService,private productService : ProductService, private toastr : CustomToastrService) {
+  constructor(spinner : NgxSpinnerService,private productService : ProductService, private toastr : CustomToastrService, private dialogService : DialogService) {
     super(spinner);
   }
 
-  displayedColumns: string[] = ['productName', 'productPrice', 'productStock', 'createdDate','updatedDate','delete','update'];
+  displayedColumns: string[] = ['productName', 'productPrice', 'productStock', 'createdDate','updatedDate','photo','delete','update'];
   dataSource : MatTableDataSource<Product_List>  = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -50,8 +52,15 @@ export class ListComponent extends BaseComponent implements OnInit {
   }
   
 
-
-    
+  selectProductImage(id :string){
+    this.dialogService.openDialog({
+      componentType: SelectProductImageDialogComponent,
+      data: id,
+      options : {
+        width : "1200px",
+      }
+    })
+  }
 
 
 

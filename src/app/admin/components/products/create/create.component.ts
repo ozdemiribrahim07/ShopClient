@@ -17,12 +17,12 @@ constructor(spinner : NgxSpinnerService,private productService : ProductService,
   super(spinner);
 }
  
-@Output() options : Partial<FileUploadOptions> = {
-  controller : "products",
-  action : "upload",
-  acceptedFiles : "png, jpg, jpeg",
-  explanation : "Ürün resmi veya resimleri ekleyin.."
-}
+// @Output() options : Partial<FileUploadOptions> = {
+//   controller : "products",
+//   action : "upload",
+//   acceptedFiles : "png, jpg, jpeg",
+//   explanation : "Ürün resmi veya resimleri ekleyin.."
+// }
 
 @Output() createdProduct : EventEmitter<Product_Create> = new EventEmitter();
 
