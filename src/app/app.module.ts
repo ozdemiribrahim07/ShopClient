@@ -10,6 +10,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import {provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FileUploadComponent } from './services/common/file-upload/file-upload.component';
 import { FileUploadDialogComponent } from './dialogs/file-upload-dialog/file-upload-dialog.component';
+import {JwtModule} from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,12 @@ import { FileUploadDialogComponent } from './dialogs/file-upload-dialog/file-upl
     UiModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
+    JwtModule.forRoot({
+      config : {
+        tokenGetter:  () => localStorage.getItem("accessToken"),
+        allowedDomains : ["localhost:7000"]
+      }
+    })
   ],
   providers: [
     provideClientHydration(),

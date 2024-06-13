@@ -28,15 +28,19 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link mx-2 text-uppercase" routerLink="login">Giriş Yap</a>
+            <a class="nav-link mx-2 text-uppercase" routerLink="login" *ngIf="!authService.isAuthenticated">Giriş Yap</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link mx-2 text-uppercase" routerLink="register">Kayıt Ol</a>
+            <a class="nav-link mx-2 text-uppercase" (click)="signOut()" *ngIf="authService.isAuthenticated">Çıkış Yap</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link mx-2 text-uppercase" routerLink="register" *ngIf="!authService.isAuthenticated">Kayıt Ol</a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link mx-2 text-uppercase" routerLink="admin">Admin</a>
+            <a class="nav-link mx-2 text-uppercase" routerLink="admin" *ngIf="authService.isAuthenticated">Admin</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto ">
